@@ -4,11 +4,14 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
     entry: path.join(__dirname, "src", "index.js"),
     output: { 
-        path: path.join(__dirname, "build"), 
-        filename: "index.bundle.js" 
+        path: path.join(__dirname, "dist"), 
+        filename: "main.js" 
     },
     mode: process.env.NODE_ENV || "development",
-    resolve: { modules: [path.resolve(__dirname, "src"), "node_modules"] },
+    resolve: { 
+        extensions: ['.css', '.scss'],
+        modules: [path.resolve(__dirname, "src"), "node_modules"] 
+    },
     devServer: { contentBase: path.join(__dirname, "src") },
     module: {
         rules: [
@@ -18,8 +21,15 @@ module.exports = {
                 use: ["babel-loader"] 
             },
             {
-                test: /\.(css|scss)$/,
-                use: ["style-loader", "css-loader"],
+                test: /\.(scss|css)$/,
+                use: [
+                    // Creates style nodes from JS strings
+                    "style-loader",
+                    // Translates CSS into CommonJS
+                    "css-loader",
+                    // Compiles Sass to CSS
+                    "sass-loader",
+                ],
             },
             { 
                 test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,

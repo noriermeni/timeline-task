@@ -1,5 +1,8 @@
 # timeline-task
 
+
+
+
 Steps for configuration of babel and webpack
 
 Step 1. Create project directory and 
