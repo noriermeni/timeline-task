@@ -34,9 +34,10 @@ const TopButtonsContainer = () => {
             },
         ]
     )
+
     return (
         <div className="top_buttons_container">
-            <p>Selected Channels</p>
+            <p className="top_buttons_title">Selected Channels</p>
             <div className="top_buttons_right_container">
                 {React.Children.toArray
                     (data.map(item =>

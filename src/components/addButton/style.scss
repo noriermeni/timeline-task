@@ -1,4 +1,16 @@
 .add_button_container {
-    border: 1px solid #CBCBCB;
-    background-color: #e2e2e2;
+    background-color: #DEDEDE;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    right: 0;
+    width: max-content;
+    height: max-content;
+    padding: 5px;
+    cursor: pointer;
+    box-shadow: 3px 3px 10px 3px rgb(85 85 85 / 37%);
+    -webkit-box-shadow: 3px 3px 10px 3px rgb(85 85 85 / 37%);
+    -moz-box-shadow: 3px 3px 10px 3px rgb(85 85 85 / 37%);
 }
