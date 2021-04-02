@@ -1,60 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BottomElement from '../bottomElement'
 import "./style.scss"
 
-const BottomContainer = () => {
-    const [ data, useData ] = useState (
-        [
-            {
-                id: '01',
-                start: '10:00',
-                end: '10:06',
-                minStart: '10%',
-                minEnd: '90%',
-            },
-            {
-                id: '02',
-                start: '10:12',
-                end: '10:18',
-                minStart: '10%',
-                minEnd: '90%',
-            },
-            {
-                id: '03',
-                start: '10:20',
-                end: '10:26',
-                minStart: '10%',
-                minEnd: '90%',
-            },
-            {
-                id: '04',
-                start: '10:29',
-                end: '10:35',
-                minStart: '10%',
-                minEnd: '90%',
-            },
-            {
-                id: '05',
-                start: '10:37',
-                end: '10:43',
-                minStart: '10%',
-                minEnd: '90%',
-            },
-            {
-                id: '06',
-                start: '10:47',
-                end: '10:53',
-                minStart: '10%',
-                minEnd: '90%',
-            },
-        ]
-    )
+const BottomContainer = (props) => {
+    const [timePhases, setTimePhases ] = useState([])
+
+    useEffect(() => {
+        setTimePhases(props.timePhases)
+    }, [props.timePhases])
+
     return (
         <div className="bottom_container">
             { React.Children.toArray (
-                data.map(item => 
-                    <BottomElement 
-                        data={item}
+                props.timePhases.map(phase =>
+                    <BottomElement
+                        phase={phase}
+                        removePhaseElement={ () => props.removePhaseElement(phase.phaseId) }
+                        onChangePhaseElements={ (phaseId, startPhase) => props.onChangePhaseElements(phaseId, startPhase) }
                     />
                 )
             )}
