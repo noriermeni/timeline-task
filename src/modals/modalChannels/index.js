@@ -1,7 +1,7 @@
 import React from 'react';
-import "./style.scss"
+import ModalWrapper from '../modalWrapper'
+
 import TopButton from "../../components/topButton";
-// import Peace from '../../assets/icons/peace.svg'
 
 const ModalChannels = (props) => {
 
@@ -13,37 +13,29 @@ const ModalChannels = (props) => {
 
     return (
         <>
-            <div
-                className={ "modalChannelsContainer " + ( props.showModal && 'activeModalChannelsContainer' ) }
+            <ModalWrapper
+                modalTitle={'Choose Channel'}
+                showModal={props.showModal}
+                closeModal={props.closeModal}
             >
-                <p className="modalChannelsTitle">Choose Channel</p>
-                <div
-                    className="contentContainer"
-                >
-                    { !checkLengthOfActiveChannels() ?
-                        React.Children.toArray(
-                            props.channels.map(channel =>
-                                !channel.isActive &&
-                                <TopButton
-                                    disableChannelElement={() => props.disableChannelElement(channel)}
-                                    enableChannelElement={() => props.enableChannelElement(channel)}
-                                    channel={channel}
-                                />
-                            )
+                { !checkLengthOfActiveChannels() ?
+                    React.Children.toArray(
+                        props.channels.map(channel =>
+                            !channel.isActive &&
+                            <TopButton
+                                disableChannelElement={() => props.disableChannelElement(channel)}
+                                enableChannelElement={() => props.enableChannelElement(channel)}
+                                channel={channel}
+                            />
                         )
-                    :
-                        <>
-                            <p className="noChannelsDeactivateText">Has no Channels deactivate</p>
-                            <img className="peaceIcon" src={'../../assets/icons/peace.svg'} />
-                        </>
-                    }
-
-                </div>
-            </div>
-            <div
-                onClick={props.closeModal}
-                className={ "overlayModalChannelsContainer " + ( props.showModal && 'activeOverlayModalChannelsContainer' ) }
-            />
+                    )
+                :
+                    <>
+                        <p className="noChannelsDeactivateText">Has no Channels deactivate</p>
+                        <img className="peaceIcon" src={'../../assets/icons/peace.svg'} />
+                    </>
+                }
+            </ModalWrapper>
         </>
     );
 }

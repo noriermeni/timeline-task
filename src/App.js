@@ -88,43 +88,51 @@ class App extends Component {
             ],
         }
     }
-    
-    onChangeLineCharts = (e) => {
-        console.log(e)
-    }
 
-    removeElementFromLineChart = () => {
-        
-    }
-
-    addNewLineOfChart = () => {
-
-    }
-
+    // Function used to remove Phase Object from Array - START
     removePhaseElement = (phaseId) => {
         let timePhases = [...this.state.timePhases]
         timePhases.splice(timePhases.findIndex(i => i.phaseId === phaseId ), 1);
         this.setState({ timePhases, timePhases });    
     }
+    // Function used to remove Phase Object from Array - END
 
-    onChangePhaseElements = (phaseId, startPhase) => {
-        // let foundPhaseElement = timePhases.find(item => item.phaseId == phaseId)
-        console.log(phaseId, startPhase)
+    // Function used to change Phase Object element in Array - START
+    onChangePhaseElements = (objPhaseElement) => {
+        let newTimePhases = [...this.state.timePhases]
+        let foundPhaseElement = this.state.timePhases.findIndex(item => item.phaseId == objPhaseElement.phaseId)
+        newTimePhases[foundPhaseElement][objPhaseElement.name] = objPhaseElement.value
+        this.setState({ timePhases: newTimePhases})
     }
+    // Function used to change Phase Object element in Array - START
 
-    enableChannelElement = (channel) => {
+    // Function used to add new element to Time Phases - START
+    addNewPhaseElement = (phase) => {
+        this.setState({
+            timePhases: this.state.timePhases.concat(phase) 
+        })
+        console.log(this.state.timePhases)
+    }
+    // Function used to add new element to Time Phases - START
+
+
+    // Function used to change Channel object to Active true - START 
+    enableChannelElement = (channel) => { // TODO: NEED TO REFACTOR function enableChannelElement and disableChannelElement need to change to toggleChannelElement
         let newChannels = [...this.state.channels]
         let foundChannelIndex = newChannels.findIndex(x => x.id === channel.id);
         newChannels[foundChannelIndex].isActive = true
         this.setState({ channels: newChannels })
     }
+    // Function used to change Channel object to Active true - START
 
-    disableChannelElement = (channel) => {
+    // Function used to change Channel object to Active false - START
+    disableChannelElement = (channel) => { // TODO: NEED TO REFACTOR function enableChannelElement and disableChannelElement need to change to toggleChannelElement
         let newChannels = [...this.state.channels]
         let foundChannelIndex = newChannels.findIndex(x => x.id === channel.id);
         newChannels[foundChannelIndex].isActive = false
         this.setState({ channels: newChannels })
     }
+    // Function used to change Channel object to Active false - START
 
     render() {
         return (
@@ -144,7 +152,8 @@ class App extends Component {
                     <BottomContainer 
                         timePhases={this.state.timePhases}
                         removePhaseElement={ (phaseId) => this.removePhaseElement(phaseId) }
-                        onChangePhaseElements={ (phaseId, startPhase) => this.onChangePhaseElements(phaseId, startPhase) }
+                        onChangePhaseElements={ (e) => this.onChangePhaseElements(e) }
+                        addNewPhaseElement={ (phase) => this.addNewPhaseElement(phase) }
                     />
 
                 </div>

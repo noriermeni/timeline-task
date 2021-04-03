@@ -1,0 +1,31 @@
+.phaseInputsContainer {
+    display: flex;
+    flex-direction: column;
+    .inputContainer {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 5px;
+        .inputLabel {
+            font-weight: 600;
+            font-size: 13px;
+            padding-bottom: 5px;
+        }
+        .input {
+            border: 1px solid #c9c9c9;
+            padding: 5px;
+            font-size: 13px;
+        }
+    }
+    .button {
+        margin-top: 5px;
+        background-color: #3CB371;
+        color: #ffffff;
+        border: none;
+        transition: 0.2s;
+        cursor: pointer;
+        padding: 5px;
+        &:hover {
+            background-color: #2E8B57;
+        }
+    }
+}

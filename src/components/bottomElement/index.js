@@ -3,12 +3,6 @@ import "./style.scss"
 
 const BottomElement = (props) => {
     const { phaseId, start, end, minStart, minEnd } = props.phase
-    const [startPhase, setStartPhase ] = useState (start)
-
-    const onChangePhaseElements = (e) => {
-        setStartPhase(e.target.value)
-        props.onChangePhaseElements(phaseId, e.target.value)
-    }
 
     return (
         <div className="bottom_element_container">
@@ -16,7 +10,7 @@ const BottomElement = (props) => {
                 <p className="input_title">ID</p>
                 <input 
                     className="input" 
-                    value={phaseId} 
+                    value={phaseId < 10 ? ("0" + phaseId).slice(-2) : phaseId} 
                     name="start" 
                     disabled
                 />
@@ -25,9 +19,9 @@ const BottomElement = (props) => {
                 <p className="input_title">START</p>
                 <input 
                     className="input" 
-                    value={startPhase} 
+                    value={start} 
                     name="start"
-                    onChange={onChangePhaseElements}
+                    onChange={ (e) => props.onChangePhaseElements({ name: e.target.name, value: e.target.value, phaseId: phaseId } )}
                 />
             </div>
             <div className="input_element">
@@ -36,7 +30,7 @@ const BottomElement = (props) => {
                     className="input" 
                     value={end} 
                     name="end" 
-                    onChange={props.onChangePhaseElements}
+                    onChange={ (e) => props.onChangePhaseElements({ name: e.target.name, value: e.target.value, phaseId: phaseId } )}
                 />
             </div>
             <div className="input_element">
@@ -44,8 +38,8 @@ const BottomElement = (props) => {
                 <input 
                     className="input" 
                     value={minStart} 
-                    name="minstart"
-                    onChange={props.onChangePhaseElements}
+                    name="minStart"
+                    onChange={ (e) => props.onChangePhaseElements({ name: e.target.name, value: e.target.value, phaseId: phaseId } )}
                 />
             </div>
             <div className="input_element">
@@ -53,8 +47,8 @@ const BottomElement = (props) => {
                 <input 
                     className="input" 
                     value={minEnd} 
-                    name="minend"
-                    onChange={props.onChangePhaseElements}
+                    name="minEnd"
+                    onChange={ (e) => props.onChangePhaseElements({ name: e.target.name, value: e.target.value, phaseId: phaseId } )}
                 />
             </div>
             <div className="remove_button_container">
