@@ -1,7 +1,14 @@
 # timeline-task
 
+Commands in steps for starting Timeline-task project
 
+Step 1. git clone https://github.com/noriermeni/timeline-task
 
+Step 2. npm install
+
+Step 3. npm run dev
+
+________________________________________________
 
 Steps for configuration of babel and webpack
 

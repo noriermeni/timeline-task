@@ -1,0 +1,23 @@
+.top_button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 5px;
+    padding: 3px 7px;
+    border-radius: 25px;
+    color: #ffffff;
+    min-width: max-content;
+    cursor: pointer;
+}
+.top_button_icon {
+    margin-right: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 1.5px solid #000000;
+    background-color: #ffffff;
+    width: 18px;
+    height: 18px;
+}
