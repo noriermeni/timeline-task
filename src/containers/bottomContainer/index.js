@@ -1,13 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import BottomElement from '../bottomElement'
+import React, { useState } from 'react';
+import BottomElement from '../../components/bottomElement'
 import "./style.scss"
 
 const BottomContainer = (props) => {
-    const [timePhases, setTimePhases ] = useState([])
-
-    useEffect(() => {
-        setTimePhases(props.timePhases)
-    }, [props.timePhases])
 
     return (
         <div className="bottom_container">
