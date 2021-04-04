@@ -15,43 +15,43 @@ class App extends Component {
                     phaseId: 1,
                     start: '10:00',
                     end: '10:06',
-                    minStart: '10%',
-                    minEnd: '90%',
+                    minStart: '10',
+                    minEnd: '90',
                 },
                 {
                     phaseId: 2,
                     start: '10:12',
                     end: '10:18',
-                    minStart: '10%',
-                    minEnd: '90%',
+                    minStart: '10',
+                    minEnd: '90',
                 },
                 {
                     phaseId: 3,
                     start: '10:20',
                     end: '10:26',
-                    minStart: '10%',
-                    minEnd: '90%',
+                    minStart: '10',
+                    minEnd: '90',
                 },
                 {
                     phaseId: 4,
                     start: '10:29',
                     end: '10:35',
-                    minStart: '10%',
-                    minEnd: '90%',
+                    minStart: '10',
+                    minEnd: '90',
                 },
                 {
                     phaseId: 5,
                     start: '10:37',
                     end: '10:43',
-                    minStart: '10%',
-                    minEnd: '90%',
+                    minStart: '10',
+                    minEnd: '90',
                 },
                 {
                     phaseId: 6,
                     start: '10:47',
                     end: '10:53',
-                    minStart: '10%',
-                    minEnd: '90%',
+                    minStart: '10',
+                    minEnd: '90',
                 },
             ],
             channels: [
@@ -86,6 +86,26 @@ class App extends Component {
                     isActive: false,
                 },
             ],
+            svgTimeName: 'TIME',
+            svgTimeLengths: [
+                '10:00',
+                '10:05',
+                '10:10',
+                '10:15',
+                '10:20',
+                '10:25',
+                '10:30',
+                '10:35',
+                '10:40',
+                '10:45',
+                '10:50',
+                '10:55',
+                '11:00',
+            ],
+            beatsLength: [
+                '0',
+                '1'
+            ],
         }
     }
 
@@ -93,6 +113,7 @@ class App extends Component {
     removePhaseElement = (phaseId) => {
         let timePhases = [...this.state.timePhases]
         timePhases.splice(timePhases.findIndex(i => i.phaseId === phaseId ), 1);
+        timePhases.map((e, idx) => e.phaseId = ++idx )
         this.setState({ timePhases, timePhases });    
     }
     // Function used to remove Phase Object from Array - END
@@ -146,7 +167,11 @@ class App extends Component {
                     />
                     
                     <GraphContainer
-
+                        phases={this.state.timePhases}
+                        channels={this.state.channels}
+                        svgTimeLengths={this.state.svgTimeLengths}
+                        svgTimeName={this.state.svgTimeName}
+                        beatsLength={this.state.beatsLength}
                     />
                     
                     <BottomContainer 

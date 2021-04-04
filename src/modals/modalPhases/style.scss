@@ -28,4 +28,22 @@
             background-color: #2E8B57;
         }
     }
+    .alert {
+        padding: 5px;
+        margin-top: 5px;
+        border: 2px solid transparent;
+        font-size: 13px;
+        color: #ffffff;
+    }
+    .alertError {
+        border: 2px solid #820000;
+        background-color: #ff4040;
+    }
+    .alertSuccess {
+        border: 2px solid #1a936f;
+        background-color: #88d498;
+    }
+    .alertHiden {
+        display: none;
+    }
 }
