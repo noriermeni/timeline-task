@@ -13,7 +13,8 @@ const GraphContainer = (props) => {
         <div 
             className="graphContainer"
         >
-            <SvgGraphComponents 
+            <SvgGraphComponents
+                minutes={props.minutes}
                 svgTimeLengths={props.svgTimeLengths}
                 svgTimeName={props.svgTimeName}
                 beatsLength={props.beatsLength}
