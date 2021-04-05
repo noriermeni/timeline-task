@@ -60,30 +60,50 @@ class App extends Component {
                     title: 'Speed',
                     color: '#EEAD49',
                     isActive: true,
+                    beatings: {
+                        arrayX: [ 92, 100, 120, 130, 140, 200, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1013 ],
+                        arrayY: [ 140, 120, 90, 120, 150, 170, 180, 154, 138, 132, 120, 112, 153, 145, 128, 122, 122, 130, 115, 135, 120 ],
+                    }
                 },
                 {
                     id: 1,
                     title: 'Channel A',
                     color: '#CB4B5A',
                     isActive: true,
+                    beatings: {
+                        arrayX: [ 92, 100, 120, 130, 140, 200, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1013 ],
+                        arrayY: [ 100, 120, 90, 110, 120, 140, 180, 174, 158, 172, 160, 142, 133, 125, 138, 142, 132, 160, 125, 145, 150 ],
+                    }
                 },
                 {
                     id: 2,
                     title: 'Channel B',
                     color: '#75308E',
                     isActive: false,
+                    beatings: {
+                        arrayX: [ 92, 100, 120, 130, 140, 200, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1013 ],
+                        arrayY: [ 80, 90, 100, 90, 100, 120, 130, 144, 128, 142, 170, 162, 153, 175, 168, 182, 189, 193, 175, 170, 172 ],
+                    }
                 },
                 {
                     id: 3,
                     title: 'Channel C',
                     color: '#30638E',
                     isActive: false,
+                    beatings: {
+                        arrayX: [ 92, 100, 120, 130, 140, 200, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1013 ],
+                        arrayY: [ 70, 90, 110, 111, 113, 115, 113, 110, 128, 132, 140, 122, 133, 145, 138, 142, 149, 153, 175, 150, 162 ],
+                    }
                 },
                 {
                     id: 4,
                     title: 'Channel C',
                     color: '#008775',
                     isActive: false,
+                    beatings: {
+                        arrayX: [ 92, 100, 120, 130, 140, 200, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1013 ],
+                        arrayY: [ 95, 97, 103, 110, 106, 110, 123, 131, 128, 122, 110, 102, 113, 125, 138, 142, 159, 143, 145, 147, 151 ],
+                    }
                 },
             ],
             svgTimeName: 'TIME',
@@ -135,7 +155,6 @@ class App extends Component {
         console.log(this.state.timePhases)
     }
     // Function used to add new element to Time Phases - START
-
 
     // Function used to change Channel object to Active true - START 
     enableChannelElement = (channel) => { // TODO: NEED TO REFACTOR function enableChannelElement and disableChannelElement need to change to toggleChannelElement

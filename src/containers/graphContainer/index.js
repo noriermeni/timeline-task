@@ -5,8 +5,6 @@ import "./style.scss"
 // import Scissors from '../../assets/icons/scissors.svg'
 
 const GraphContainer = (props) => {
-    const [ phases, setPhases ] = useState(props.phases) 
-    const [ channels, setChannels ] = useState(props.channels)
     const [ horizontalLines, setHorizontalLines] = useState([])
 
     return (
@@ -17,8 +15,8 @@ const GraphContainer = (props) => {
                 svgTimeLengths={props.svgTimeLengths}
                 svgTimeName={props.svgTimeName}
                 beatsLength={props.beatsLength}
-                phases={phases}
-                channels={channels}
+                phases={props.phases}
+                channels={props.channels}
             />
         </div>
     );
