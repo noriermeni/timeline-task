@@ -125,68 +125,109 @@ const SvgGraphComponents = (props) => {
     };
     // Calculate total seconds - END
 
-    return (
-        phases.length ?
-            <svg
-                version="1.1"
-                className="svgContainer"
-                width={calculateWidthOfHorizontalLines() ? calculateWidthOfHorizontalLines() + 50 : '100%'}
-            >
+    // Return phase Lines - START
+    const renderPhaseLines = () => {
+        return (
+            <g className="phaseDetails">
+                { React.Children.toArray (
+                    marginOfPhase && marginOfPhase.map((phase, i) =>
+                        <g className="bar" id="two">
+                            <rect fill="#E2E2E2" height="200px" y={25} x={phase.marginWidth + 25} width={phase.minStartWidth} />
+                            <rect fill="#CBCBCB" height="200px" y={25} x={phase.marginWidth + phase.minStartWidth + 25} width={phase.minEndWidth} />
+                            <rect fill="#E2E2E2" height="200px" y={25} x={phase.marginWidth + phase.minEndWidth + 25} width={phase.minLastWidth} />
+                        </g>
+                    )
+                ) }
+            </g>
+        )
+    }
+    // Return phase Lines - END
+
+    // Return Horizontal Lines for coordinates - START
+    const renderHorizontalLines = () => {
+        return (
+            <g className="horizontalLines">
+                {React.Children.toArray (
+                    verticalLines.length && numbers && numbers.map(item =>
+                        <line stroke="#BBBBBB" strokeWidth="1" x1={25} x2={calculateWidthOfHorizontalLines() + 25} y1={25 * item} y2={25 * item}/>
+                    )
+                )}
+            </g>
+        )
+    }
+    // Return Horizontal Lines for coordinates - END
+
+    // Return Vertical Lines for coordinates - START
+    const renderVerticalLines = () => {
+        return (
+            <g className="verticalLines" >
+                { React.Children.toArray (
+                    verticalLines?.map((element, i) =>
+                        <line stroke="#BBBBBB" strokeWidth="1" x1={((1000 / verticalLines.length - 1 ) * i) + 25 } x2={((1000 / verticalLines.length - 1) * i) + 25 } y1="25" y2="225"/>
+                    )
+                )}
+            </g>
+        )
+    }
+    // Return Vertical Lines for coordinates - END
+
+    // Return Vertical Lines Details for coordinates - START
+    const renderVerticalLinesDetails = () => {
+        return (
+            <g className="verticalLinesData">
+                { React.Children.toArray (
+                    verticalLines.map((element, i) =>
+                        <text style={{ fontSize: 12, fill: '#868686' }} x={ ( ((1000 / verticalLines.length - 1) * i) - 13 + 25) } y="245">{element}</text>
+                    )
+                )}
+                <text style={{ fontSize: 13, fill: '#868686' }} x="500" y="270" className="label-title">{props.svgTimeName}</text>
+            </g>
+        )
+    }
+    // Return Vertical Lines Details for coordinates - END
+
+    // Return Horizontal Lines Details for coordinates - START
+    const renderHorizontalLinesDetails = () => {
+        return (
+            <g className="horizontalLinesData">
+                <text style={{ fontSize: 12, fill: '#868686' }} x={10} y={225}>{props.beatsLength[0]}</text>
+                <text style={{ fontSize: 12, fill: '#868686' }} x={10} y={30}>{props.beatsLength[1]}</text>
+            </g>
+        )
+    }
+    // Return Horizontal Lines Details for coordinates - END
+
+    const renderBeatingsOscillations = () => {
+        return (
+            <g className="beatingsContainer">
+                { React.Children.toArray (
+                    beatingLines.map((polyline, i) =>
+                        channels[i]?.isActive && <polyline stroke={channels[i]?.color} fill="none" points={polyline} />
+                    )
+                )}
+            </g>
+        )
+    }
+
+    const renderSvgContainer = () => {
+        return (
+            <svg className="svgContainer"
+                width={calculateWidthOfHorizontalLines() ? calculateWidthOfHorizontalLines() + 50 : '100%'} >
                 <g>
-                    <g className="phaseDetails">
-                        {
-                            React.Children.toArray (
-                                marginOfPhase && marginOfPhase.map((phase, i) =>
-                                    <g className="bar" id="two">
-                                        <rect fill="#E2E2E2" height="200px" y={25} x={phase.marginWidth + 25} width={phase.minStartWidth} />
-                                        <rect fill="#CBCBCB" height="200px" y={25} x={phase.marginWidth + phase.minStartWidth + 25} width={phase.minEndWidth} />
-                                        <rect fill="#E2E2E2" height="200px" y={25} x={phase.marginWidth + phase.minEndWidth + 25} width={phase.minLastWidth} />
-                                    </g>
-                                )
-                            )
-                        }
-                    </g>
-                    <g className="horizontalLines">
-                        {React.Children.toArray (
-                            verticalLines.length && numbers && numbers.map(item =>
-                                <line stroke="#BBBBBB" strokeWidth="1" x1={25} x2={calculateWidthOfHorizontalLines() + 25} y1={25 * item} y2={25 * item}/>
-                            )
-                        )}
-                    </g>
-
-                    <g
-                        className="verticalLines"
-                    >
-                        { React.Children.toArray (
-                            verticalLines?.map((element, i) =>
-                                <line stroke="#BBBBBB" strokeWidth="1" x1={((1000 / verticalLines.length - 1 ) * i) + 25 } x2={((1000 / verticalLines.length - 1) * i) + 25 } y1="25" y2="225"/>
-                            )
-                        )}
-                    </g>
-
-                    <g className="verticalLinesData">
-                        { React.Children.toArray (
-                            verticalLines.map((element, i) =>
-                                <text style={{ fontSize: 12, fill: '#868686' }} x={ ( ((1000 / verticalLines.length - 1) * i) - 13 + 25) } y="245">{element}</text>
-                            )
-                        )}
-                        <text style={{ fontSize: 13, fill: '#868686' }} x="500" y="270" className="label-title">{props.svgTimeName}</text>
-                    </g>
-
-                    <g className="horizontalLinesData">
-                        <text style={{ fontSize: 12, fill: '#868686' }} x={10} y={225}>{props.beatsLength[0]}</text>
-                        <text style={{ fontSize: 12, fill: '#868686' }} x={10} y={30}>{props.beatsLength[1]}</text>
-                    </g>
-
-                    <g className="beatingsContainer">
-                        { React.Children.toArray (
-                            beatingLines.map((polyline, i) =>
-                                channels[i]?.isActive && <polyline stroke={channels[i]?.color} fill="none" points={polyline} />
-                            )
-                        )}
-                    </g>
+                    {renderPhaseLines()}
+                    {renderHorizontalLines()}
+                    {renderVerticalLines()}
+                    {renderVerticalLinesDetails()}
+                    {renderHorizontalLinesDetails()}
+                    {renderBeatingsOscillations()}
                 </g>
             </svg>
+        )
+    }
+
+    return (
+        phases.length ?
+            renderSvgContainer()
         :
             noDataFound()
     );
