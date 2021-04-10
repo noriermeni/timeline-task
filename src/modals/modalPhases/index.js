@@ -2,6 +2,17 @@ import React, { useEffect, useState } from 'react';
 import ModalWrapper from '../modalWrapper'
 import './style.scss'
 
+/**
+ * Current Functionality of the Table:
+ *
+ *
+ * Known bugs:
+ *
+ * TODO: Input Time validation need to change because is not ok.
+ * TODO: After Submit the new Phase problems with alerts. Need to close modal or on change to remove the alert.
+ *
+ */
+
 const ModalPhases = (props) => {
     const [ alertError, setAlertError ] = useState (false)
     const [ alertSuccess, setAlertSuccess ] = useState (false)

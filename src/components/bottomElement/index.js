@@ -1,6 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import "./style.scss"
 
+/**
+ * Current Functionality of the Table:
+ *
+ *
+ * Known bugs:
+ *
+ * TODO: Time validation is not ok need to change input type time.
+ *
+ */
+
 const BottomElement = (props) => {
     const { phaseId, start, end, minStart, minEnd } = props.phase
 

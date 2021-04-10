@@ -1,8 +1,17 @@
 import React, { useState } from 'react';
+import "./style.scss"
+
 import BottomElement from '../../components/bottomElement'
 import ModalPhases from '../../modals/modalPhases';
-import ModawPhases from '../../modals/modalPhases'
-import "./style.scss"
+
+/**
+ * Current Functionality of the Table:
+ *
+ *
+ * Known bugs:
+ *
+ *
+ */
 
 const BottomContainer = (props) => {
     const [ showModal, setShowModal ] = useState(false)
