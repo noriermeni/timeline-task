@@ -8,6 +8,7 @@ import "./style.scss"
  * Known bugs:
  *
  * TODO: Time validation is not ok need to change input type time.
+ * TODO: Percents input for minEnd and minStart Validation.
  *
  */
 

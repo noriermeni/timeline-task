@@ -72,12 +72,15 @@ const SvgGraphComponents = (props) => {
     // Sort Times and return minutes between start time and end time - END
 
     // Coordinate generation for Beating Lines - START
+    // TODO: Loop for more then 2000 times. Need to refactor.
+    // TODO: after add new Phases problem with width
+    // TODO: This function can crash app is used just to create dummy Beatings
     const generatePolylineArray = () => {
         if(calculateWidthOfHorizontalLines()) {
             channels.map( channel => {
                 let polylineString = '';
                 let count = 0;
-                for(let i = 25; i <= calculateWidthOfHorizontalLines() + 25; i+=2) {
+                for(let i = 0; i <= (calculateWidthOfHorizontalLines() + phases.length); i+=5) {
                     polylineString += `${i},${channel.beatings.arrayY[count]} `;
                     count++
                 }
@@ -275,7 +278,7 @@ const SvgGraphComponents = (props) => {
     // Beating lines elements with polyline - START
     const renderBeatingsOscillations = () => {
         return (
-            <g className="beatingsContainer">
+            <g className="beatingsContainer" transform="translate(25, 0)">
                 {
                     React.Children.toArray (
                         beatingLines.map((polyline, i) =>
