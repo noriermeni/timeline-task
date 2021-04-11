@@ -1,15 +1,24 @@
 import React, { useState } from 'react';
+import "./style.scss"
+
 import BottomElement from '../../components/bottomElement'
 import ModalPhases from '../../modals/modalPhases';
-import ModawPhases from '../../modals/modalPhases'
-import "./style.scss"
+
+/**
+ * Current Functionality of the Table:
+ *
+ *
+ * Known bugs:
+ *
+ *
+ */
 
 const BottomContainer = (props) => {
     const [ showModal, setShowModal ] = useState(false)
 
     return (
         <>
-            <div className="bottom_container">
+            <div className="bottomContainer">
                 { React.Children.toArray (
                     props.timePhases.map(phase =>
                         <BottomElement
@@ -20,7 +29,7 @@ const BottomContainer = (props) => {
                     )
                 )}
                 <div 
-                    className="add_bottom_button"
+                    className="addBottomButton"
                     onClick={ () => setShowModal(true) }
                 >
                     <svg fill="#7C7C7C" width="20" height="20" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg>

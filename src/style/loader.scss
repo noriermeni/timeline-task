@@ -1,0 +1,48 @@
+.loader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  .loaderWheel {
+    animation: spin 1s infinite linear;
+    border: 2px solid #eead4945;
+    border-left: 4px solid #d2691e;
+    border-radius: 50%;
+    height: 30px;
+    margin-bottom: 10px;
+    width: 30px;
+  }
+  .loaderText {
+    color: #d2691e;
+    font-family: arial, sans-serif;
+    &:after {
+      content: 'Waiting for data';
+      animation: load 2s linear infinite;
+    }
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes load {
+  0% {
+    content: 'Waiting for data';
+  }
+  33% {
+    content: 'Waiting for data.';
+  }
+  67% {
+    content: 'Waiting for data..';
+  }
+  100% {
+    content: 'Waiting for data...';
+  }
+}

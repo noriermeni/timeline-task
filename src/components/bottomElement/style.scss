@@ -1,4 +1,4 @@
-.bottom_element_container {
+.bottomElementContainer {
     display: flex;
     border-radius: 4px;
     padding: 5px;
@@ -8,12 +8,13 @@
     box-shadow: 0px 4px 11px 1px rgb(85 85 85 / 17%);
     -webkit-box-shadow: 0px 4px 11px 1px rgb(85 85 85 / 17%);
     -moz-box-shadow: 0px 4px 11px 1px rgb(85 85 85 / 17%);
-    .id_input_element {
+    border: 1px solid #DEDEDE;
+    .idInputElement {
         display: flex;
         align-items: center;
         flex: 1;
     }
-    .input_element {
+    .inputElement {
         display: flex;
         align-items: center;
         width: max-content;
@@ -33,7 +34,7 @@
             }
         }
     }
-    .input_title {
+    .inputTitle {
         padding-right: 5px;
         padding-left: 5px;
         font-size: 13px;
@@ -48,9 +49,9 @@
         background-color: #ffffff;
         border: 1px solid #dedede;
     }
-    .remove_button_container {
+    .removeButtonContainer {
         padding: 7px;
-        .remove_button {
+        .removeButton {
             display: flex;
             padding: 5px;
             border-radius: 50%;

@@ -1,7 +1,7 @@
-.bottom_container {
+.bottomContainer {
     flex-direction: column;
 }
-.add_bottom_button {
+.addBottomButton {
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -10,4 +10,11 @@
     box-shadow: 0px 4px 11px 1px rgb(85 85 85 / 17%);
     -webkit-box-shadow: 0px 4px 11px 1px rgb(85 85 85 / 17%);
     -moz-box-shadow: 0px 4px 11px 1px rgb(85 85 85 / 17%);
+    transition: 0.2s linear;
+    border: 1px solid #DEDEDE;
+    &:hover {
+        box-shadow: 0px 4px 11px 1px rgb(85 85 85 / 40%);;
+        -webkit-box-shadow: 0px 4px 11px 1px rgb(85 85 85 / 40%);
+        -moz-box-shadow: 0px 4px 11px 1px rgb(85 85 85 / 40%);
+    }
 }
