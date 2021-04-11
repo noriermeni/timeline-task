@@ -20,6 +20,9 @@
   },
   "homepage": "https://github.com/noriermeni/timeline-task#readme",
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "autoprefixer": "^10.2.5",
+    "isomorphic-fetch": "^3.0.0",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
