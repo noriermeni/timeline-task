@@ -8,6 +8,10 @@ Step 2. npm install
 
 Step 3. npm run dev
 
+
+------------------------------------------------
+DEMO: https://timeliph.web.app/
+Icons are not included in firebase.
 ________________________________________________
 
 Steps for configuration of babel and webpack
