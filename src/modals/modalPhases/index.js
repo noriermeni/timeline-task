@@ -56,7 +56,7 @@ const ModalPhases = (props) => {
                 <div className="phaseInputsContainer">
                     <div className="inputContainer">
                         <p className="inputLabel">Start</p>
-                        <input
+                        <input // TODO: Not Supported in Internet Explorer need to make validation with input text
                             type="time"
                             className="input"
                             name={'start'}
@@ -66,7 +66,7 @@ const ModalPhases = (props) => {
                     </div>
                     <div className="inputContainer">
                         <p className="inputLabel">End</p>
-                        <input
+                        <input // TODO: Not Supported in Internet Explorer need to make validation with input text
                             type="time"
                             className="input"
                             name={'end'}
@@ -77,7 +77,9 @@ const ModalPhases = (props) => {
                     <div className="inputContainer">
                         <p className="inputLabel">Min Start</p>
                         <input
-                            type="text"
+                            type="number" // TODO: Need a Validation for percents
+                            min="0"
+                            max="100"
                             className="input"
                             name={'minStart'}
                             value={minStart}
@@ -87,7 +89,9 @@ const ModalPhases = (props) => {
                     <div className="inputContainer">
                         <p className="inputLabel">Min End</p>
                         <input
-                            type="text"
+                            type="number" // TODO: Need a Validation for percents
+                            min="0"
+                            max="100"
                             className="input"
                             name={'minEnd'}
                             value={minEnd}
