@@ -33,7 +33,7 @@ const BottomElement = (props) => {
             </div>
             <div className="inputElement">
                 <p className="inputTitle">START</p>
-                <input 
+                <input // TODO: Not Supported in Internet Explorer need to make validation with input text
                     type="time"
                     className="input" 
                     value={start} 
@@ -43,7 +43,7 @@ const BottomElement = (props) => {
             </div>
             <div className="inputElement">
                 <p className="inputTitle">END</p>
-                <input 
+                <input // TODO: Not Supported in Internet Explorer need to make validation with input text
                     type="time"
                     className="input" 
                     value={end} 
@@ -55,7 +55,7 @@ const BottomElement = (props) => {
                 <p className="inputTitle">MIN START</p>
                 <span className="inputSymbol">
                     <input 
-                        type="number"
+                        type="number" // TODO: Need a Validation for percents
                         min="0"
                         max="100"
                         className="input" 
@@ -69,7 +69,7 @@ const BottomElement = (props) => {
                 <p className="inputTitle">MIN END</p>
                 <span className="inputSymbol">
                     <input
-                        type="number"
+                        type="number" // TODO: Need a Validation for percents
                         min="0"
                         max="100"
                         className="input" 

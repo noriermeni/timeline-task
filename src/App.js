@@ -32,6 +32,7 @@ class App extends Component {
 
     // Request for data from fake api - START
     getData = () => {
+        require('isomorphic-fetch')
         const that = this;
         fetch(url)
             .then(function(response){ return response.json(); })
