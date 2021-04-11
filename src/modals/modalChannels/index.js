@@ -1,6 +1,7 @@
 import React from 'react';
-import ModalWrapper from '../modalWrapper'
+import './style.scss';
 
+import ModalWrapper from '../modalWrapper'
 import TopButton from "../../components/topButton";
 
 const ModalChannels = (props) => {

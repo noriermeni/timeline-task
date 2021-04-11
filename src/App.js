@@ -106,7 +106,7 @@ class App extends Component {
 
         return (
             <div className="container">
-                <div className="inner_container">
+                <div className="innerContainer">
                     { this.state.timePhases.length && this.state.channels.length ?
                         <>
                             <TopButtonsContainer

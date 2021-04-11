@@ -20,9 +20,9 @@ const BottomElement = (props) => {
     }
 
     return (
-        <div className="bottom_element_container">
-            <div className="id_input_element">
-                <p className="input_title">ID</p>
+        <div className="bottomElementContainer">
+            <div className="idInputElement">
+                <p className="inputTitle">ID</p>
                 <input 
                     type="text"
                     className="input" 
@@ -31,8 +31,8 @@ const BottomElement = (props) => {
                     disabled
                 />
             </div>
-            <div className="input_element">
-                <p className="input_title">START</p>
+            <div className="inputElement">
+                <p className="inputTitle">START</p>
                 <input 
                     type="time"
                     className="input" 
@@ -41,8 +41,8 @@ const BottomElement = (props) => {
                     onChange={ (e) => onChangePhaseElements({ name: e.target.name, value: e.target.value, phaseId: phaseId } )}
                 />
             </div>
-            <div className="input_element">
-                <p className="input_title">END</p>
+            <div className="inputElement">
+                <p className="inputTitle">END</p>
                 <input 
                     type="time"
                     className="input" 
@@ -51,8 +51,8 @@ const BottomElement = (props) => {
                     onChange={ (e) => onChangePhaseElements({ name: e.target.name, value: e.target.value, phaseId: phaseId } )}
                 />
             </div>
-            <div className="input_element">
-                <p className="input_title">MIN START</p>
+            <div className="inputElement">
+                <p className="inputTitle">MIN START</p>
                 <span className="inputSymbol">
                     <input 
                         type="number"
@@ -65,8 +65,8 @@ const BottomElement = (props) => {
                     />
                 </span>
             </div>
-            <div className="input_element">
-                <p className="input_title">MIN END</p>
+            <div className="inputElement">
+                <p className="inputTitle">MIN END</p>
                 <span className="inputSymbol">
                     <input
                         type="number"
@@ -79,9 +79,9 @@ const BottomElement = (props) => {
                     />
                 </span>
             </div>
-            <div className="remove_button_container">
+            <div className="removeButtonContainer">
                 <span
-                    className="remove_button"
+                    className="removeButton"
                     onClick={props.removePhaseElement}
                 >
                     <svg fill="#ffffff" enableBackground="new 0 0 413.348 413.348" height="10" viewBox="0 0 413.348 413.348" width="10" xmlns="http://www.w3.org/2000/svg"><path d="m413.348 24.354-24.354-24.354-182.32 182.32-182.32-182.32-24.354 24.354 182.32 182.32-182.32 182.32 24.354 24.354 182.32-182.32 182.32 182.32 24.354-24.354-182.32-182.32z" /></svg>
