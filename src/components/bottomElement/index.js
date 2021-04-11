@@ -12,7 +12,11 @@ import "./style.scss"
  */
 
 const BottomElement = (props) => {
-    const { phaseId, start, end, minStart, minEnd } = props.phase
+    const { phaseId, start, end, minStart, minEnd } = props.phase;
+
+    const onChangePhaseElements = (details) => {
+        props.onChangePhaseElements(details)
+    }
 
     return (
         <div className="bottom_element_container">
@@ -33,7 +37,7 @@ const BottomElement = (props) => {
                     className="input" 
                     value={start} 
                     name="start"
-                    onChange={ (e) => props.onChangePhaseElements({ name: e.target.name, value: e.target.value, phaseId: phaseId } )}
+                    onChange={ (e) => onChangePhaseElements({ name: e.target.name, value: e.target.value, phaseId: phaseId } )}
                 />
             </div>
             <div className="input_element">
@@ -43,30 +47,34 @@ const BottomElement = (props) => {
                     className="input" 
                     value={end} 
                     name="end" 
-                    onChange={ (e) => props.onChangePhaseElements({ name: e.target.name, value: e.target.value, phaseId: phaseId } )}
+                    onChange={ (e) => onChangePhaseElements({ name: e.target.name, value: e.target.value, phaseId: phaseId } )}
                 />
             </div>
             <div className="input_element">
                 <p className="input_title">MIN START</p>
                 <span className="inputSymbol">
                     <input 
-                        type="text"
+                        type="number"
+                        min="0"
+                        max="100"
                         className="input" 
                         value={minStart} 
                         name="minStart"
-                        onChange={ (e) => props.onChangePhaseElements({ name: e.target.name, value: e.target.value, phaseId: phaseId } )}
+                        onChange={ (e) => onChangePhaseElements({ name: e.target.name, value: e.target.value, phaseId: phaseId } )}
                     />
                 </span>
             </div>
             <div className="input_element">
                 <p className="input_title">MIN END</p>
                 <span className="inputSymbol">
-                    <input 
-                        type="text"
+                    <input
+                        type="number"
+                        min="0"
+                        max="100"
                         className="input" 
                         value={minEnd} 
                         name="minEnd"
-                        onChange={ (e) => props.onChangePhaseElements({ name: e.target.name, value: e.target.value, phaseId: phaseId } )}
+                        onChange={ (e) => onChangePhaseElements({ name: e.target.name, value: e.target.value, phaseId: phaseId } )}
                     />
                 </span>
             </div>

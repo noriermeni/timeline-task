@@ -52,8 +52,7 @@ const GraphContainer = (props) => {
                 <p>Selected Channel</p>
             </div>
             <div className="svgComponent">
-                <SvgGraphComponents
-                    {...props}
+                <SvgGraphComponents {...props}
                     cutElementOfPhases={(phaseId) => cutElementOfPhases(phaseId)}
                 />
             </div>

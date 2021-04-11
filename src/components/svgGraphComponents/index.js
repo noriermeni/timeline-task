@@ -22,13 +22,7 @@ const SvgGraphComponents = (props) => {
     useEffect(() => {
         filteredEnablePhases()
         setChannels(props.channels)
-        generatePolylineArray()
     }, [ props.phases, props.channels ])
-
-    const filteredEnablePhases = () => {
-        const filtered = props.phases.filter(i => i.isEnable );
-        setPhases(filtered.length ? filtered : props.phases)
-    }
 
     useEffect(() => {
         phases.length && calculateTimeZones()
@@ -36,7 +30,13 @@ const SvgGraphComponents = (props) => {
 
     useEffect(() => {
         calculateMarginOfPhase();
+        generatePolylineArray()
     }, [ startEnd ])
+
+    const filteredEnablePhases = () => {
+        const filtered = props.phases.filter(i => i.isEnable );
+        setPhases(filtered.length ? filtered : props.phases)
+    }
 
     // Find Starter time and End time - START
     const findPhasesStartEndTime = () => {
@@ -73,11 +73,18 @@ const SvgGraphComponents = (props) => {
 
     // Coordinate generation for Beating Lines - START
     const generatePolylineArray = () => {
-        channels.map( channel => {
-            let polylineString = '';
-            channel?.beatings?.arrayX.map((coordinateX, i) => polylineString += `${coordinateX},${channel?.beatings?.arrayY[i]} ` );
-            setBeatingLines(oldArray => [...oldArray, polylineString]);
-        });
+        if(calculateWidthOfHorizontalLines()) {
+            channels.map( channel => {
+                let polylineString = '';
+                let count = 0;
+                for(let i = 25; i <= calculateWidthOfHorizontalLines() + 25; i+=2) {
+                    polylineString += `${i},${channel.beatings.arrayY[count]} `;
+                    count++
+                }
+                // channel?.beatings?.arrayY.map((coordinateY, i) => polylineString += `${ increment += 5 },${coordinateY} ` );
+                setBeatingLines(oldArray => [...oldArray, polylineString]);
+            });
+        }
 	};
     // Coordinate generation for Beating Lines - END
 
@@ -93,23 +100,25 @@ const SvgGraphComponents = (props) => {
     const calculateMarginOfPhase = () => {
         if (calculateWidthForEachSecond()) {
             let marginPhases = [];
-            { React.Children.toArray(
-                phases.map(phase => {
-                    let actualStart = phase.start.split(":");
-                    let actualEnd = phase.end.split(":");
-                    let findActualWidth = ((((actualEnd[0] - actualStart[0]) * 60) + (actualEnd[1] - actualStart[1])) * 60) * calculateWidthForEachSecond()
-                    marginPhases.push({
-                        phaseId: phase.phaseId,
-                        isEnable: phase.isEnable,
-                        isActive: false,
-                        findActualWidth,
-                        marginWidth: ((((actualStart[0] - splitMinMaxTime().start[0]) * 60) + (actualStart[1] - splitMinMaxTime().start[1])) * 60) * calculateWidthForEachSecond(),
-                        minStartWidth: findActualWidth * (phase.minStart / 100),
-                        minEndWidth: findActualWidth * (phase.minEnd / 100),
-                        minLastWidth: findActualWidth * (( 100 - phase.minEnd) / 100),
+            {
+                React.Children.toArray(
+                    phases.map(phase => {
+                        let actualStart = phase.start.split(":");
+                        let actualEnd = phase.end.split(":");
+                        let findActualWidth = ((((actualEnd[0] - actualStart[0]) * 60) + (actualEnd[1] - actualStart[1])) * 60) * calculateWidthForEachSecond()
+                        marginPhases.push({
+                            phaseId: phase.phaseId,
+                            isEnable: phase.isEnable,
+                            isActive: false,
+                            findActualWidth,
+                            marginWidth: ((((actualStart[0] - splitMinMaxTime().start[0]) * 60) + (actualStart[1] - splitMinMaxTime().start[1])) * 60) * calculateWidthForEachSecond(),
+                            minStartWidth: findActualWidth * (phase.minStart / 100),
+                            minEndWidth: findActualWidth * (phase.minEnd / 100),
+                            minLastWidth: findActualWidth * (( 100 - phase.minEnd) / 100),
+                        })
                     })
-                })
-            )}
+                )
+            }
             setMarginOfPhase([...marginPhases])
         }
     };
@@ -156,18 +165,20 @@ const SvgGraphComponents = (props) => {
     const renderPhaseLines = () => {
         return (
             <g className="phaseDetails">
-                { React.Children.toArray (
-                    marginOfPhase && marginOfPhase.map( phase =>
-                        <g
-                            className="phaseElement"
-                            onClick={() => enableElementOfPhases(phase.phaseId)}
-                        >
-                            <rect fill={phase.isActive ? '#E4F3F0' : '#E2E2E2' } height="200px" y={25} x={phase.marginWidth + 25} width={phase.minStartWidth} />
-                            <rect fill={phase.isActive ? '#CEE7E4' : '#CBCBCB'} height="200px" y={25} x={phase.marginWidth + phase.minStartWidth + 25} width={phase.minEndWidth} />
-                            <rect fill={phase.isActive ? '#E4F3F0' : '#E2E2E2' } height="200px" y={25} x={phase.marginWidth + phase.minEndWidth + 25} width={phase.minLastWidth} />
-                        </g>
+                {
+                    React.Children.toArray (
+                        marginOfPhase && marginOfPhase.map( phase =>
+                            <g
+                                className="phaseElement"
+                                onClick={() => enableElementOfPhases(phase.phaseId)}
+                            >
+                                <rect fill={phase.isActive ? '#E4F3F0' : '#E2E2E2' } height="200px" y={25} x={phase.marginWidth + 25} width={phase.minStartWidth} />
+                                <rect fill={phase.isActive ? '#CEE7E4' : '#CBCBCB'} height="200px" y={25} x={phase.marginWidth + phase.minStartWidth + 25} width={phase.minEndWidth} />
+                                <rect fill={phase.isActive ? '#E4F3F0' : '#E2E2E2' } height="200px" y={25} x={phase.marginWidth + phase.minEndWidth + 25} width={phase.minLastWidth} />
+                            </g>
+                        )
                     )
-                ) }
+                }
             </g>
         )
     }
@@ -177,17 +188,19 @@ const SvgGraphComponents = (props) => {
     const sliceBorders = () => {
         return (
             <g className="phaseDetails">
-                { React.Children.toArray (
-                    marginOfPhase && marginOfPhase.map((phase, i) =>
-                        phase.isActive &&
-                            <g>
-                                <rect fill={'#707070'} height="204px" y={23} x={phase.marginWidth + 21} width={4} />
-                                <rect fill={'#B2B2B2'} height="100px" y={75} x={phase.marginWidth + 22} width={2} />
-                                <rect fill={'#707070'} height="204px" y={23} x={phase.marginWidth + phase.minEndWidth + phase.minLastWidth + 25} width={4} />
-                                <rect fill={'#B2B2B2'} height="100px" y={75} x={phase.marginWidth + phase.minEndWidth + phase.minLastWidth + 26} width={2} />
-                            </g>
+                {
+                    React.Children.toArray (
+                        marginOfPhase && marginOfPhase.map((phase, i) =>
+                            phase.isActive &&
+                                <g>
+                                    <rect fill={'#707070'} height="204px" y={23} x={phase.marginWidth + 21} width={4} />
+                                    <rect fill={'#B2B2B2'} height="100px" y={75} x={phase.marginWidth + 22} width={2} />
+                                    <rect fill={'#707070'} height="204px" y={23} x={phase.marginWidth + phase.minEndWidth + phase.minLastWidth + 25} width={4} />
+                                    <rect fill={'#B2B2B2'} height="100px" y={75} x={phase.marginWidth + phase.minEndWidth + phase.minLastWidth + 26} width={2} />
+                                </g>
+                        )
                     )
-                ) }
+                }
             </g>
         )
     }
@@ -203,11 +216,13 @@ const SvgGraphComponents = (props) => {
     const renderHorizontalLines = () => {
         return (
             <g className="horizontalLines">
-                {React.Children.toArray (
-                    verticalLines.length && numbers && numbers.map(item =>
-                        <line stroke="#BBBBBB" strokeWidth="1" x1={25} x2={calculateWidthOfHorizontalLines() + 25} y1={25 * item} y2={25 * item}/>
+                {
+                    React.Children.toArray (
+                        verticalLines.length && numbers && numbers.map(item =>
+                            <line stroke="#BBBBBB" strokeWidth="1" x1={25} x2={calculateWidthOfHorizontalLines() + 25} y1={25 * item} y2={25 * item}/>
+                        )
                     )
-                )}
+                }
             </g>
         )
     }
@@ -217,11 +232,13 @@ const SvgGraphComponents = (props) => {
     const renderVerticalLines = () => {
         return (
             <g className="verticalLines" >
-                { React.Children.toArray (
-                    verticalLines?.map((element, i) =>
-                        <line stroke="#BBBBBB" strokeWidth="1" x1={((1000 / verticalLines.length - 1 ) * i) + 25 } x2={((1000 / verticalLines.length - 1) * i) + 25 } y1="25" y2="225"/>
+                {
+                    React.Children.toArray (
+                        verticalLines?.map((element, i) =>
+                            <line stroke="#BBBBBB" strokeWidth="1" x1={((1000 / verticalLines.length - 1 ) * i) + 25 } x2={((1000 / verticalLines.length - 1) * i) + 25 } y1="25" y2="225"/>
+                        )
                     )
-                )}
+                }
             </g>
         )
     }
@@ -231,11 +248,13 @@ const SvgGraphComponents = (props) => {
     const renderVerticalLinesDetails = () => {
         return (
             <g className="verticalLinesData">
-                { React.Children.toArray (
-                    verticalLines.map((element, i) =>
-                        <text style={{ fontSize: 12, fill: '#868686' }} x={ ( ((1000 / verticalLines.length - 1) * i) - 13 + 25) } y="245">{element}</text>
+                {
+                    React.Children.toArray (
+                        verticalLines.map((element, i) =>
+                            <text style={{ fontSize: 12, fill: '#868686' }} x={ ( ((1000 / verticalLines.length - 1) * i) - 13 + 25) } y="245">{element}</text>
+                        )
                     )
-                )}
+                }
                 <text style={{ fontSize: 13, fill: '#868686' }} x="500" y="270" className="label-title">TIME</text>
             </g>
         )
@@ -253,18 +272,23 @@ const SvgGraphComponents = (props) => {
     }
     // Return Horizontal Lines Details for coordinates - END
 
+    // Beating lines elements with polyline - START
     const renderBeatingsOscillations = () => {
         return (
             <g className="beatingsContainer">
-                { React.Children.toArray (
-                    beatingLines.map((polyline, i) =>
-                        channels[i]?.isActive && <polyline stroke={channels[i]?.color} fill="none" points={polyline} />
+                {
+                    React.Children.toArray (
+                        beatingLines.map((polyline, i) =>
+                            channels[i]?.isActive && <polyline stroke={channels[i]?.color} fill="none" points={polyline} />
+                        )
                     )
-                )}
+                }
             </g>
         )
     }
+    // Beating lines elements with polyline - END
 
+    // Body of Svg Graph - START
     const renderSvgContainer = () => {
         return (
             <svg className="svgContainer"
@@ -281,6 +305,7 @@ const SvgGraphComponents = (props) => {
             </svg>
         )
     }
+    // Body of Svg Graph - END
 
     return (
         phases.length ?

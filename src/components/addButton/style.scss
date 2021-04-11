@@ -10,7 +10,14 @@
     height: max-content;
     padding: 5px;
     cursor: pointer;
-    box-shadow: 3px 3px 10px 3px rgb(85 85 85 / 37%);
-    -webkit-box-shadow: 3px 3px 10px 3px rgb(85 85 85 / 37%);
-    -moz-box-shadow: 3px 3px 10px 3px rgb(85 85 85 / 37%);
+    box-shadow: 3px 3px 10px 3px rgb(85 85 85 / 28%);
+    -webkit-box-shadow: 3px 3px 10px 3px rgb(85 85 85 / 28%);
+    -moz-box-shadow: 3px 3px 10px 3px rgb(85 85 85 / 28%);
+    transition: 0.2s linear;
+    border: 1px solid #DEDEDE;
+    &:hover {
+        box-shadow: 3px 3px 10px 3px rgb(85 85 85 / 37%);
+        -webkit-box-shadow: 3px 3px 10px 3px rgb(85 85 85 / 37%);
+        -moz-box-shadow: 3px 3px 10px 3px rgb(85 85 85 / 37%);
+    }
 }
