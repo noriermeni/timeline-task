@@ -8,7 +8,6 @@ Step 2. npm install
 
 Step 3. npm run dev
 
-
 ------------------------------------------------
 DEMO: https://timeliph.web.app/
 Icons are not included in firebase.
@@ -82,3 +81,33 @@ Step 10. In package.json we need to add scripts for starting the app
 To run the Webpack dev server we need to write the command:
 
     npm run dev
+    
+------------------------------------------------
+
+Dependencies versions
+
+"@babel/polyfill": "^7.12.1",
+"autoprefixer": "^10.2.5",
+"isomorphic-fetch": "^3.0.0",
+"react": "17.0.2",
+"react-dom": "17.0.2"
+    
+    
+devDependencies versions
+ 
+"@babel/core": "7.13.14",
+"@babel/plugin-proposal-class-properties": "7.13.0",
+"@babel/preset-env": "7.13.12",
+"@babel/preset-react": "7.13.13",
+"babel-loader": "8.2.2",
+"css-loader": "5.2.0",
+"file-loader": "6.2.0",
+"html-webpack-plugin": "5.3.1",
+"path": "0.12.7",
+"sass": "1.32.8",
+"sass-loader": "11.0.1",
+"style-loader": "2.0.0",
+"webpack": "5.28.0",
+"webpack-cli": "4.6.0",
+"webpack-dev-server": "3.11.2"
+
